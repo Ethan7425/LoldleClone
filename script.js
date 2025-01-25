@@ -1,6 +1,6 @@
 // List of available skins and their associated champions
 const skins = [
-  { file: "Aatrox_BloodMoonSkin.jpg", champion: "aatrox" },
+  { file: "Aatrox_BloodMoonSkin.jpg", champion: ["aatrox", "ashe"]}, 
   { file: "Aatrox_DRXSkin.jpg", champion: "aatrox" },
   { file: "Aatrox_JusticarSkin.jpg", champion: "aatrox" },
   { file: "Aatrox_LunarEclipseSkin.jpg", champion: "aatrox" },
@@ -1792,7 +1792,6 @@ function deductPoints(amount) {
 }
 
 
-
 // Function to set the difficulty
 function setDifficulty(level) {
   difficulty = level;
@@ -1810,19 +1809,25 @@ function setDifficulty(level) {
   cropSplashRandomly();
 }
 
-
-// Function to load a random skin
 function loadRandomSkin() {
   const randomIndex = Math.floor(Math.random() * skins.length);
   const selectedSkin = skins[randomIndex];
 
   const splash = document.getElementById("splash");
   splash.src = `skins/${selectedSkin.file}`;
-  splash.dataset.champion = selectedSkin.champion; // Store the champion name
+
+  // Ensure champions are stored as an array
+  const champions = Array.isArray(selectedSkin.champion)
+    ? selectedSkin.champion
+    : [selectedSkin.champion];
+
+  splash.dataset.champion = JSON.stringify(champions); // Store champions as a JSON string
   splash.onerror = handleImageError; // Set error handler for missing images
 
   clearResult();
 }
+
+
 
 function clearResult() {
   // Clear the result message and input field after a small delay
@@ -1866,35 +1871,36 @@ function toggleFullImage() {
   }
 }
 
-
-
-
-// Function to check the user's guess
 function checkGuess() {
-  const correctAnswer = document.getElementById("splash").dataset.champion; // Get the correct champion
+  const splash = document.getElementById("splash");
+  const correctAnswer = JSON.parse(splash.dataset.champion); // Parse the JSON string into an array
   const userGuess = document.getElementById("guess-input").value.trim().toLowerCase();
   const result = document.getElementById("result"); // The result box
   const correctAnswerBox = document.getElementById("correct-answer"); // Correct answer display
 
-  if (userGuess === correctAnswer) {
+  if (correctAnswer.includes(userGuess)) {
+    // User's guess matches any correct answer
     result.textContent = "Correct! You guessed the champion!";
     result.className = "correct"; // Add the "correct" class for green styling
     result.style.display = "block"; // Ensure the result box is visible
     correctAnswerBox.textContent = ""; // Clear the correct answer message
-    correctAnswers++;
+    correctAnswers++; // Increment correct answers count
     updateScore(); // Update score counter
-    loadRandomSkin();
-    points += 1000;
-    updatePointsDisplay();
+    loadRandomSkin(); // Load a new skin
+    points += 1000; // Add points
+    updatePointsDisplay(); // Update points display
   } else {
-    deductPoints(250);
+    // Incorrect guess
+    deductPoints(250); // Deduct points for wrong answer
     result.textContent = "Incorrect. Try again!";
     result.className = "incorrect"; // Add the "incorrect" class for red styling
     result.style.display = "block"; // Ensure the result box is visible
-    correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.toUpperCase()}`; // Show correct answer
-    clearResult();
+    correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.join(", ").toUpperCase()}`; // Show all correct answers
+    clearResult(); // Clear the result after a delay
   }
 }
+
+
 
 // Function to update the score display
 function updateScore() {
