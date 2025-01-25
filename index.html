@@ -13,7 +13,6 @@
     <button id="new-game-button" onclick="startNewGame()">New Game</button>
   </div>
 
-
   <!-- Difficulty Selection Buttons -->
   <div id="difficulty-buttons">
     <button onclick="setDifficulty('easy')">Easy</button>
@@ -24,6 +23,11 @@
   <!-- Splash Container -->
   <div id="splash-container">
     <img id="splash" alt="Champion Splash">
+  </div>
+
+  <!-- Full Splash Container -->
+  <div id="full-splash-container" style="display: none;">
+    <img id="full-splash" alt="Full Splash Image">
   </div>
 
   <!-- Buttons for actions -->
@@ -51,6 +55,17 @@
     <div id="result" class="correct"></div>
     <div id="correct-answer"></div>
   </div>
+
+
+  <!-- Full Splash Container -->
+<div id="full-splash-container">
+  <img id="full-splash" alt="Full Splash Image">
+</div>
+
+<!-- Full Image Toggle Button -->
+<div id="toggle-full-image-container">
+  <button id="toggle-full-image" onclick="toggleFullImage()">Show Full Image</button>
+</div>
 
 
   <script src="script.js"></script>

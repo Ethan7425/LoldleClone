@@ -1776,6 +1776,7 @@ const skins = [
 
 let difficulty = 'medium'; // Default difficulty
 let correctAnswers = 0; // Correct answers counter
+let isFullImageShown = false; // Track if the full image is currently shown
 
 
 // Function to set the difficulty
@@ -1795,26 +1796,6 @@ function setDifficulty(level) {
   cropSplashRandomly();
 }
 
-// // Function to load a random skin
-// function loadRandomSkin() {
-//   const randomIndex = Math.floor(Math.random() * skins.length);
-//   const selectedSkin = skins[randomIndex];
-
-//   const splash = document.getElementById("splash");
-//   splash.src = `skins/${selectedSkin.file}`;
-//   splash.dataset.champion = selectedSkin.champion; // Store the champion name
-//   splash.onerror = handleImageError; // Set error handler for missing images
-
-//   // Clear the result message
-//   const result = document.getElementById("result");
-//   result.textContent = ""; // Reset the win/lose text
-//   result.style.color = ""; // Reset the text color
-//   result.style.display = "none";
-
-//   // Clear the input field
-//   const guessInput = document.getElementById("guess-input");
-//   guessInput.value = ""; // Reset the input text
-// }
 
 // Function to load a random skin
 function loadRandomSkin() {
@@ -1840,6 +1821,31 @@ function loadRandomSkin() {
   }, 1000); // 1000 milliseconds = 1 second delay
 }
 
+
+function toggleFullImage() {
+  const fullSplashContainer = document.getElementById("full-splash-container");
+  const splash = document.getElementById("splash");
+  const fullSplash = document.getElementById("full-splash");
+  const toggleButton = document.getElementById("toggle-full-image");
+  const toggleButtonContainer = document.getElementById("toggle-full-image-container");
+
+  if (fullSplashContainer.style.display === "none" || !fullSplashContainer.style.display) {
+    // Show the full image
+    fullSplash.src = splash.src;
+    fullSplashContainer.style.display = "flex";
+    toggleButton.textContent = "Hide Full Image";
+
+    // Add class to move the button down
+    toggleButtonContainer.classList.add("show-full");
+  } else {
+    // Hide the full image
+    fullSplashContainer.style.display = "none";
+    toggleButton.textContent = "Show Full Image";
+
+    // Remove class to reset the button position
+    toggleButtonContainer.classList.remove("show-full");
+  }
+}
 
 
 
