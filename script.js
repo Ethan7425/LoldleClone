@@ -1777,6 +1777,20 @@ const skins = [
 let difficulty = 'medium'; // Default difficulty
 let correctAnswers = 0; // Correct answers counter
 let isFullImageShown = false; // Track if the full image is currently shown
+let points = 0;
+
+// Update points on the point board
+function updatePointsDisplay() {
+    const pointsDisplay = document.getElementById("points");
+    pointsDisplay.textContent = points;
+}
+
+// Modify points deduction to update the button state
+function deductPoints(amount) {
+  points = Math.max(points - amount, 0);
+  updatePointsDisplay();
+}
+
 
 
 // Function to set the difficulty
@@ -1865,14 +1879,16 @@ function checkGuess() {
     correctAnswers++;
     updateScore(); // Update score counter
     loadRandomSkin();
+    points += 1000;
+    updatePointsDisplay();
   } else {
+    deductPoints(250);
     result.textContent = "Incorrect. Try again!";
     result.className = "incorrect"; // Add the "incorrect" class for red styling
     result.style.display = "block"; // Ensure the result box is visible
     correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.toUpperCase()}`; // Show correct answer
   }
 }
-
 
 // Function to update the score display
 function updateScore() {
@@ -1882,6 +1898,8 @@ function updateScore() {
 
 // Function to start a new game
 function startNewGame() {
+  points = 0; // Reset points
+  updatePointsDisplay();
   correctAnswers = 0; // Reset the correct answers counter
   updateScore(); // Update the score display
   loadRandomSkin(); // Load a new skin
@@ -1889,6 +1907,15 @@ function startNewGame() {
   result.textContent = ""; // Clear the result message
   const guessInput = document.getElementById("guess-input");
   guessInput.value = ""; // Clear the input field
+}
+
+function tryCropSplash() {
+  if (points < 50) {
+    alert("Not enough points to recrop!"); // Notify the player
+    return;
+  }
+  deductPoints(50);
+  cropSplashRandomly();
 }
 
 // Function to crop the splash randomly based on difficulty
@@ -1936,6 +1963,7 @@ function handleImageError() {
 document.addEventListener("DOMContentLoaded", () => {
   setDifficulty('medium'); // Set default difficulty
   loadRandomSkin(); // Load a random skin
+  updatePointsDisplay();
   document.getElementById("splash").onload = cropSplashRandomly; // Crop after image loads
 });
 
