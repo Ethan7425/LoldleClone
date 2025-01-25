@@ -1,0 +1,176 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Adjust content to top */
+    min-height: 100vh;  /* Ensure body takes at least the full height of the viewport */
+}
+  
+  /* Difficulty buttons styling */
+  #difficulty-buttons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  #difficulty-buttons button {
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c757d;
+    color: #ffffff;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  #difficulty-buttons button:hover {
+    background-color: #5a6268;
+  }
+  
+  #difficulty-buttons button.active {
+    background-color: #4a90e2;
+  }
+  
+  /* Container for the cropped splash */
+  #splash-container {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #4a5568;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for the splash image */
+  #splash {
+    position: absolute;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Buttons container */
+  #buttons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Buttons styling */
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* Guess form styling */
+  #guess-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  
+  #guess-input {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+  }
+  
+  #guess-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0px 0px 4px #4a90e2;
+  }
+  
+  /* Result message box */
+  #result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  #result {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 280px;
+    display: none;
+  }
+  
+  #result.correct {
+    background-color: #38a169;
+    color: #ffffff;
+  }
+  
+  #result.incorrect {
+    background-color: #e53e3e;
+    color: #ffffff;
+  }
+  
+  /* Correct Answer Message Box */
+  #correct-answer {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #4a5568;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Score counter styling */
+  #score-counter {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #4a5568;
+  }
+  
+/* Game buttons styling */
+#game-buttons {
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+  /* Styling for the "New Game" button */
+  #new-game-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #new-game-button:hover {
+    background-color: #bd2130;
+  }
+  

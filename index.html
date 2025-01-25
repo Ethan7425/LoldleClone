@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Champion Guess Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- New Game button -->
+  <div id="game-buttons">
+    <button id="new-game-button" onclick="startNewGame()">New Game</button>
+  </div>
+
+
+  <!-- Difficulty Selection Buttons -->
+  <div id="difficulty-buttons">
+    <button onclick="setDifficulty('easy')">Easy</button>
+    <button onclick="setDifficulty('medium')">Medium</button>
+    <button onclick="setDifficulty('hard')">Hard</button>
+  </div>
+
+  <!-- Splash Container -->
+  <div id="splash-container">
+    <img id="splash" alt="Champion Splash">
+  </div>
+
+  <!-- Buttons for actions -->
+  <div id="buttons">
+    <button id="crop-button" onclick="cropSplashRandomly()">Re-crop</button>
+    <button id="new-skin-button" onclick="loadRandomSkin()">Change Skin</button>
+  </div>
+
+  <!-- Guess Form -->
+  <form id="guess-form">
+    <input type="text" id="guess-input" placeholder="Enter champion name">
+    <button type="button" onclick="checkGuess()">Guess</button>
+  </form>
+
+  <!-- Result Message -->
+  <div id="result"></div>
+
+  <!-- Correct Answers Counter -->
+  <div id="score-counter">
+    Correct Answers: <span id="correct-count">0</span>
+  </div>
+
+  <!-- Result Section -->
+  <div id="result-container">
+    <div id="result" class="correct"></div>
+    <div id="correct-answer"></div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
