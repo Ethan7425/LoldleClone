@@ -1821,14 +1821,19 @@ function loadRandomSkin() {
   splash.dataset.champion = selectedSkin.champion; // Store the champion name
   splash.onerror = handleImageError; // Set error handler for missing images
 
+  clearResult();
+}
+
+function clearResult() {
   // Clear the result message and input field after a small delay
   setTimeout(() => {
     // Clear the result message
     const result = document.getElementById("result");
+    const corr_answer = document.getElementById("correct-answer");
     result.textContent = ""; // Reset the win/lose text
     result.style.color = ""; // Reset the text color
     result.style.display = "none"; // Hide the result box
-
+    corr_answer.textContent = "";
     // Clear the input field
     const guessInput = document.getElementById("guess-input");
     guessInput.value = ""; // Reset the input text
@@ -1887,6 +1892,7 @@ function checkGuess() {
     result.className = "incorrect"; // Add the "incorrect" class for red styling
     result.style.display = "block"; // Ensure the result box is visible
     correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.toUpperCase()}`; // Show correct answer
+    clearResult();
   }
 }
 
