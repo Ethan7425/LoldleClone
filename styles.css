@@ -194,7 +194,7 @@ button:active {
 /* ========================== Full Splash Image Styling ========================== */
 #full-splash-container {
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
@@ -206,8 +206,8 @@ button:active {
 }
 
 #full-splash-container img {
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 60vw;
+    max-height: 60vh;
     border-radius: 4px;
 }
 
@@ -239,5 +239,5 @@ button:active {
 
 /* ========================== Button Movement when Full Image is Displayed ========================== */
 #toggle-full-image-container.show-full {
-    margin-top: 170px; /* Move the button down when the full image is shown */
+    margin-top: 150px; /* Move the button down when the full image is shown */
 }
