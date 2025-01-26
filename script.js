@@ -1805,8 +1805,8 @@ function setDifficulty(level) {
     }
   });
 
-  // Re-crop the image based on the new difficulty
-  cropSplashRandomly();
+  // Reload an image based on the new difficulty
+  loadRandomSkin();
 }
 
 function loadRandomSkin() {
@@ -1983,9 +1983,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
+//TODO Button to uncover the solution 
 
 
 
