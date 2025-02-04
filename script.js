@@ -1977,9 +1977,19 @@ document.addEventListener("DOMContentLoaded", () => {
   loadRandomSkin(); // Load a random skin
   updatePointsDisplay();
   document.getElementById("splash").onload = cropSplashRandomly; // Crop after image loads
+
+  // Add event listener to trigger guess on Enter key press
+  const guessInput = document.getElementById("guess-input");
+  const guessForm = document.getElementById("guess-form");
+
+  // Trigger the guess when Enter key is pressed in the input field
+  guessInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevent form submission
+      checkGuess(); // Call checkGuess() on Enter key press
+    }
+  });
 });
-
-
 
 
 
