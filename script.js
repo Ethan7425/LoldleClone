@@ -1886,20 +1886,43 @@ function checkGuess() {
     correctAnswerBox.textContent = ""; // Clear the correct answer message
     correctAnswers++; // Increment correct answers count
     updateScore(); // Update score counter
-    loadRandomSkin(); // Load a new skin
+    // loadRandomSkin(); // Load a new skin
     points += 1000; // Add points
     updatePointsDisplay(); // Update points display
+    
+    // Show the full art popup
+    showFullArtPopup(splash.src);
   } else {
     // Incorrect guess
     deductPoints(250); // Deduct points for wrong answer
     result.textContent = "Incorrect. Try again!";
     result.className = "incorrect"; // Add the "incorrect" class for red styling
     result.style.display = "block"; // Ensure the result box is visible
-    correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.join(", ").toUpperCase()}`; // Show all correct answers
+    // correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.join(", ").toUpperCase()}`; // Show all correct answers
     clearResult(); // Clear the result after a delay
   }
 }
 
+
+function showFullArtPopup(imageSrc) {
+  const popup = document.getElementById("full-art-popup");
+  const fullArtImage = document.getElementById("full-art-image");
+  const nextGuessBtn = document.getElementById("next-guess-btn");
+
+  // Set the image source for the full art
+  fullArtImage.src = imageSrc;
+
+  // Show the popup
+  popup.style.display = "block";
+
+  // Add event listener to the "Next Guess" button
+  nextGuessBtn.addEventListener("click", function() {
+    // Hide the popup and reset the input field
+    popup.style.display = "none";
+    document.getElementById("guess-input").value = ""; // Reset the input field
+    loadRandomSkin();
+  });
+}
 
 
 // Function to update the score display

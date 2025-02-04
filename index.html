@@ -34,10 +34,21 @@
     <img id="full-splash" alt="Full Splash Image">
   </div>
 
+
+  <!-- Full Art Popup (Initially hidden) -->
+  <div id="full-art-popup" style="display: none;">
+    <div id="popup-content">
+      <img id="full-art-image" src="" alt="Full Champion Art">
+      <button id="next-guess-btn">Next Guess</button>
+    </div>
+  </div>
+
+
+
   <!-- Buttons for actions -->
   <div id="buttons">
     <button id="crop-button" onclick="tryCropSplash()">Re-crop</button>
-    <button id="new-skin-button" onclick="loadRandomSkin()">Change Skin</button>
+    <button id="new-skin-button" onclick="showFullArtPopup()">Change Skin</button>
   </div>
 
   <!-- Guess Form -->
