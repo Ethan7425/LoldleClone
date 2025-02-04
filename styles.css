@@ -61,10 +61,10 @@ button:hover {
   box-shadow: 0 6px 14px var(--glow-pink), 0 0 15px var(--glow-purple);
 }
 
-button:active {
+/* button:active {
   transform: scale(0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 0 12px var(--glow-blue);
-}
+} */
 
 
 /* Input Fields */
@@ -120,13 +120,9 @@ input[type="text"]:focus {
     transition: background-color 0.3s ease-in-out;
 }
 
-/* #difficulty-buttons button:hover {
-    background-color: #5a6268;
-}
-
 #difficulty-buttons button.active {
-    background-color: #4a90e2;
-} */
+    background: linear-gradient(135deg, var(--accent-blue), var(--primary-deepest-purple));
+}
 
 /* --- Spacer --- */
 
