@@ -274,13 +274,20 @@ input[type="text"]:focus {
 /* --- Spacer --- */
 
 /* ========================== Correct Answer Message Box ========================== */
-#correct-answer {
-    font-size: 16px;
-    margin-top: 10px;
-    color: #4a5568;
-    font-weight: bold;
-    text-align: center;
+#correct-answer-text {
+  font-size: 18px;             /* Slightly larger font size */
+  margin-bottom: 15px;         /* Space below the text */
+  color: var(--text-primary);              /* Darker color for readability */
+  font-weight: 600;            /* Semi-bold text for emphasis */
+  text-align: center;          /* Center-align the text */
+  padding: 10px;               /* Padding around the text */
+  background-color: rgba(0, 0, 0, 0.1);  /* Light gray background for contrast */
+  border-radius: 8px;          /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Soft shadow for depth */
+  width: 80%;                  /* Limit width to keep the text compact */
+  margin: 0 auto;              /* Center the text block */
 }
+
 
 /* --- Spacer --- */
 

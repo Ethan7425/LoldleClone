@@ -1791,6 +1791,34 @@ function deductPoints(amount) {
   updatePointsDisplay();
 }
 
+let mult = 1;
+
+function resetMult() {
+  mult = 1;
+}
+
+function addPoints() {
+  let pointsToAdd;
+
+  if (difficulty === 'easy') {
+    pointsToAdd = 500 * mult;
+  } else if (difficulty === 'medium') {
+    pointsToAdd = 1000 * mult;
+  } else if (difficulty === 'hard') {
+    pointsToAdd = 1500 * mult; 
+  }
+
+  // Add the points
+  points += pointsToAdd;
+
+  // Update the points display (assuming you have a function to update the points on the screen)
+  updatePointsDisplay();
+  mult += 0.1;
+
+  if (mult >= 2)
+    mult = 2;
+}
+
 
 // Function to set the difficulty
 function setDifficulty(level) {
@@ -1824,7 +1852,7 @@ function loadRandomSkin() {
   splash.dataset.champion = JSON.stringify(champions); // Store champions as a JSON string
   splash.onerror = handleImageError; // Set error handler for missing images
 
-  clearResult();
+  // clearResult();
 }
 
 
@@ -1834,7 +1862,7 @@ function clearResult() {
   setTimeout(() => {
     // Clear the result message
     const result = document.getElementById("result");
-    const corr_answer = document.getElementById("correct-answer");
+    const corr_answer = document.getElementById("correct-answer-text");
     result.textContent = ""; // Reset the win/lose text
     result.style.color = ""; // Reset the text color
     result.style.display = "none"; // Hide the result box
@@ -1883,17 +1911,14 @@ function checkGuess() {
     result.textContent = "Correct! You guessed the champion!";
     result.className = "correct"; // Add the "correct" class for green styling
     result.style.display = "block"; // Ensure the result box is visible
-    correctAnswerBox.textContent = ""; // Clear the correct answer message
+    // correctAnswerBox.textContent = ""; // Clear the correct answer message
     correctAnswers++; // Increment correct answers count
     updateScore(); // Update score counter
-    // loadRandomSkin(); // Load a new skin
-    points += 1000; // Add points
-    updatePointsDisplay(); // Update points display
-    
+    addPoints();
     // Show the full art popup
     showFullArtPopup(splash.src);
   } else {
-    // Incorrect guess
+    resetMult();
     deductPoints(250); // Deduct points for wrong answer
     result.textContent = "Incorrect. Try again!";
     result.className = "incorrect"; // Add the "incorrect" class for red styling
@@ -1914,12 +1939,17 @@ function showFullArtPopup(imageSrc) {
   const popup = document.getElementById("full-art-popup");
   const fullArtImage = document.getElementById("full-art-image");
   const nextGuessBtn = document.getElementById("next-guess-btn");
+  const correctText = document.getElementById("correct-answer-text")
+  const correctAnswerText = JSON.parse(splash.dataset.champion); // Parse the JSON string into an array
+
 
   // Set the image source for the full art
   fullArtImage.src = imageSrc;
 
   // Show the popup
   popup.style.display = "block";
+
+  correctText.textContent = `The correct answer is: ${correctAnswerText}`;
 
   // Add event listener to the "Next Guess" button
   nextGuessBtn.addEventListener("click", function() {
@@ -2020,9 +2050,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
-//TODO Button to uncover the solution 
 
 
 
