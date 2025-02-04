@@ -1903,6 +1903,12 @@ function checkGuess() {
   }
 }
 
+function giveup() {
+  const splash = document.getElementById("splash");
+
+  deductPoints(500);
+  showFullArtPopup(splash.src);
+}
 
 function showFullArtPopup(imageSrc) {
   const popup = document.getElementById("full-art-popup");

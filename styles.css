@@ -189,7 +189,7 @@ input[type="text"]:focus {
   background: var(--background-dark);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  width: 80%;                
+  width: 65%;                
   max-width: 90%;             /* Limit the content's maximum width */
   max-height: 90%;            /* Prevent content from overflowing vertically */
 }
