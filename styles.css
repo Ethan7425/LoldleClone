@@ -285,7 +285,7 @@ input[type="text"]:focus {
   border-radius: 8px;          /* Rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Soft shadow for depth */
   width: 80%;                  /* Limit width to keep the text compact */
-  margin: 0 auto;              /* Center the text block */
+  margin: 10px;              /* Center the text block */
 }
 
 

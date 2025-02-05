@@ -1924,6 +1924,10 @@ function checkGuess() {
     result.className = "incorrect"; // Add the "incorrect" class for red styling
     result.style.display = "block"; // Ensure the result box is visible
   }
+
+  setTimeout(function() {
+    result.style.display = "none"; // Hide the result box after the delay
+  }, 2000); // 2000ms delay (2 seconds)
 }
 
 // Function to handle wrong guesses and update lives
