@@ -386,3 +386,61 @@ input[type="text"]:focus {
   color: var(--text-primary);
   font-weight: bold;
 }
+
+
+/* ========================== LeaderBoard Styling ========================== */
+
+/* Leaderboard container with flexbox */
+#leaderboard-container {
+  position: fixed;            /* Fix position relative to the viewport */
+  top: 20%;                  /* Add space from the top */
+  left: 20px;                /* Position on the right side */
+  background-color: var(--primary-deepest-purple);  /* Light background */
+  border-radius: 10px;        /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Shadow for depth */
+  max-width: 300px;           /* Limit the width of the sidebar */
+  height: 50%;  
+  padding: 20px;              /* Space inside the container */
+  text-align: left;           /* Align content to the left */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  overflow-y: auto;           /* Allow scrolling if content overflows */
+  z-index: 100;              /* Ensure it's above other content */
+  
+  display: flex;              /* Use flexbox to position items */
+  flex-direction: column;     /* Stack elements vertically */
+  justify-content: space-between; /* Space out the elements (top, content, and bottom) */
+}
+
+#leaderboard-container div {
+  font-size: 18px;             /* Size of each leaderboard entry */
+  margin-bottom: 10px;         /* Space between leaderboard entries */
+  color: var(--text-accent);              /* Dark text color */
+  font-weight: bold;           /* Emphasize the position and score */
+}
+
+/* Reset leaderboard button styling */
+#resetLeaderboard-button {
+  padding: 10px 20px;
+  background-color: #e53e3e;   /* Red background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin-top: 20px;         /* Add space above the button */
+}
+
+#resetLeaderboard-button:hover {
+  background-color: #c53030;   /* Darker red on hover */
+}
+
+/* Styling for the leaderboard title (optional) */
+#leaderboard-container h2 {
+  font-size: 24px;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}

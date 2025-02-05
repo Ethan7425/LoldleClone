@@ -1858,8 +1858,6 @@ function loadRandomSkin() {
 
 
 function clearResult() {
-  // Clear the result message and input field after a small delay
-  setTimeout(() => {
     // Clear the result message
     const result = document.getElementById("result");
     const corr_answer = document.getElementById("correct-answer-text");
@@ -1870,7 +1868,6 @@ function clearResult() {
     // Clear the input field
     const guessInput = document.getElementById("guess-input");
     guessInput.value = ""; // Reset the input text
-  }, 1000); // 1000 milliseconds = 1 second delay
 }
 
 
@@ -1917,6 +1914,7 @@ function checkGuess() {
     addPoints();
     // Show the full art popup
     showFullArtPopup(splash.src);
+    gameOver(points);
   } else {
     resetMult();
     deductPoints(250); // Deduct points for wrong answer
@@ -1924,7 +1922,6 @@ function checkGuess() {
     result.className = "incorrect"; // Add the "incorrect" class for red styling
     result.style.display = "block"; // Ensure the result box is visible
     // correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.join(", ").toUpperCase()}`; // Show all correct answers
-    clearResult(); // Clear the result after a delay
   }
 }
 
@@ -1956,6 +1953,7 @@ function showFullArtPopup(imageSrc) {
     // Hide the popup and reset the input field
     popup.style.display = "none";
     document.getElementById("guess-input").value = ""; // Reset the input field
+    clearResult(); // Clear the result after a delay
     loadRandomSkin();
   });
 }
@@ -2030,15 +2028,19 @@ function handleImageError() {
   loadRandomSkin(); // Load another random skin
 }
 
+
 // Initialize the game
 document.addEventListener("DOMContentLoaded", () => {
   setDifficulty('medium'); // Set default difficulty
   loadRandomSkin(); // Load a random skin
   updatePointsDisplay();
+  displayLeaderboard();
   document.getElementById("splash").onload = cropSplashRandomly; // Crop after image loads
 
-  // Add event listener to trigger guess on Enter key press
+  // Autofocus on the input field when the page loads
   const guessInput = document.getElementById("guess-input");
+  guessInput.focus(); // Set focus on the guess input field
+  
   const guessForm = document.getElementById("guess-form");
 
   // Trigger the guess when Enter key is pressed in the input field
@@ -2049,7 +2051,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
-
 
