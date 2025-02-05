@@ -1896,6 +1896,10 @@ function toggleFullImage() {
   }
 }
 
+// Global variable for lives
+let lives = 3;
+
+// Function to check the guess
 function checkGuess() {
   const splash = document.getElementById("splash");
   const correctAnswer = JSON.parse(splash.dataset.champion); // Parse the JSON string into an array
@@ -1908,28 +1912,38 @@ function checkGuess() {
     result.textContent = "Correct! You guessed the champion!";
     result.className = "correct"; // Add the "correct" class for green styling
     result.style.display = "block"; // Ensure the result box is visible
-    // correctAnswerBox.textContent = ""; // Clear the correct answer message
     correctAnswers++; // Increment correct answers count
     updateScore(); // Update score counter
     addPoints();
     // Show the full art popup
     showFullArtPopup(splash.src);
-    gameOver(points);
   } else {
-    resetMult();
-    deductPoints(250); // Deduct points for wrong answer
+    looseGuess();  // Handle wrong guess
+    // Deduct points for wrong answer
     result.textContent = "Incorrect. Try again!";
     result.className = "incorrect"; // Add the "incorrect" class for red styling
     result.style.display = "block"; // Ensure the result box is visible
-    // correctAnswerBox.textContent = `The correct answer was: ${correctAnswer.join(", ").toUpperCase()}`; // Show all correct answers
   }
 }
 
-function giveup() {
-  const splash = document.getElementById("splash");
+// Function to handle wrong guesses and update lives
+function looseGuess() {
+  // Decrease lives by 1
+  lives -= 1;
 
-  deductPoints(500);
-  showFullArtPopup(splash.src);
+  // Update the displayed lives counter
+  document.getElementById("lives-nb").textContent = lives;
+
+  // Check if the player has no lives left
+  if (lives <= 0) {
+    gameOver(points);  // Call gameOver function when lives are 0
+  }
+}
+
+
+function giveup() {
+  gameOver(points);
+  startNewGame();
 }
 
 function showFullArtPopup(imageSrc) {
@@ -1968,6 +1982,9 @@ function updateScore() {
 // Function to start a new game
 function startNewGame() {
   points = 0; // Reset points
+  lives = 3;  // Reset lives to 3
+
+  document.getElementById("lives-nb").textContent = lives;
   updatePointsDisplay();
   correctAnswers = 0; // Reset the correct answers counter
   updateScore(); // Update the score display

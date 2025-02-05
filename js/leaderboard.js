@@ -64,11 +64,14 @@ function saveScore(newScore) {
   }
   
   function gameOver(score) {
-    // Save the score to the leaderboard
+    const splash = document.getElementById("splash");
+
+    showFullArtPopup(splash.src);
     saveScore(score);
-  
+    // alert("Game Over! You've run out of lives.");
     // Display the updated leaderboard
     displayLeaderboard();
     clearResult();
+    startNewGame();
   }
   
