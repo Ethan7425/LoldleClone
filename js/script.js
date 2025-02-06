@@ -1864,7 +1864,6 @@ function clearResult() {
     result.textContent = ""; // Reset the win/lose text
     result.style.color = ""; // Reset the text color
     result.style.display = "none"; // Hide the result box
-    corr_answer.textContent = "";
     // Clear the input field
     const guessInput = document.getElementById("guess-input");
     guessInput.value = ""; // Reset the input text
@@ -1940,7 +1939,7 @@ function looseGuess() {
 
   // Check if the player has no lives left
   if (lives <= 0) {
-    gameOver(points);  // Call gameOver function when lives are 0
+    gameOver(points);
   }
 }
 
@@ -1964,6 +1963,7 @@ function showFullArtPopup(imageSrc) {
   // Show the popup
   popup.style.display = "block";
 
+  console.log(correctAnswerText);
   correctText.textContent = `The correct answer is: ${correctAnswerText}`;
 
   // Add event listener to the "Next Guess" button
