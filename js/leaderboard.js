@@ -66,10 +66,10 @@ function saveScore(newScore) {
   function gameOver(score) {
     const splash = document.getElementById("splash");
 
-    showFullArtPopup(splash.src);
+    showFullArtPopup(splash.src, false);
     saveScore(score);
-    // alert("Game Over! You've run out of lives.");
-    // Display the updated leaderboard
+    resetMult();
+    // alert("Game Over!");
     displayLeaderboard();
     clearResult();
     startNewGame();

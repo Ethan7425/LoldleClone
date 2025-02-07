@@ -1851,8 +1851,6 @@ function loadRandomSkin() {
 
   splash.dataset.champion = JSON.stringify(champions); // Store champions as a JSON string
   splash.onerror = handleImageError; // Set error handler for missing images
-
-  // clearResult();
 }
 
 
@@ -1864,6 +1862,7 @@ function clearResult() {
     result.textContent = ""; // Reset the win/lose text
     result.style.color = ""; // Reset the text color
     result.style.display = "none"; // Hide the result box
+    // corr_answer.style.background = "";
     // Clear the input field
     const guessInput = document.getElementById("guess-input");
     guessInput.value = ""; // Reset the input text
@@ -1914,30 +1913,23 @@ function checkGuess() {
     correctAnswers++; // Increment correct answers count
     updateScore(); // Update score counter
     addPoints();
-    // Show the full art popup
-    showFullArtPopup(splash.src);
+    showFullArtPopup(splash.src, true);
   } else {
-    looseGuess();  // Handle wrong guess
-    // Deduct points for wrong answer
+    looseGuess();
     result.textContent = "Incorrect. Try again!";
-    result.className = "incorrect"; // Add the "incorrect" class for red styling
-    result.style.display = "block"; // Ensure the result box is visible
+    result.className = "incorrect";
+    result.style.display = "block";
   }
 
   setTimeout(function() {
-    result.style.display = "none"; // Hide the result box after the delay
-  }, 2000); // 2000ms delay (2 seconds)
+    result.style.display = "none"; 
+  }, 2000);
 }
 
 // Function to handle wrong guesses and update lives
 function looseGuess() {
-  // Decrease lives by 1
   lives -= 1;
-
-  // Update the displayed lives counter
   document.getElementById("lives-nb").textContent = lives;
-
-  // Check if the player has no lives left
   if (lives <= 0) {
     gameOver(points);
   }
@@ -1949,13 +1941,14 @@ function giveup() {
   startNewGame();
 }
 
-function showFullArtPopup(imageSrc) {
+function showFullArtPopup(imageSrc, answerState) {
   const popup = document.getElementById("full-art-popup");
   const fullArtImage = document.getElementById("full-art-image");
   const nextGuessBtn = document.getElementById("next-guess-btn");
   const correctText = document.getElementById("correct-answer-text")
   const correctAnswerText = JSON.parse(splash.dataset.champion); // Parse the JSON string into an array
 
+  correctText.style.background = "red";
 
   // Set the image source for the full art
   fullArtImage.src = imageSrc;
@@ -1963,7 +1956,16 @@ function showFullArtPopup(imageSrc) {
   // Show the popup
   popup.style.display = "block";
 
-  console.log(correctAnswerText);
+  if(answerState) {
+    correctText.style.background = "var(--success-green)";
+    nextGuessBtn.textContent = `Next Guess`;
+  } else {
+    correctText.style.background = "var(--error-red)";
+    nextGuessBtn.textContent = `New Game`;
+  }
+
+
+  // console.log(correctAnswerText);
   correctText.textContent = `The correct answer is: ${correctAnswerText}`;
 
   // Add event listener to the "Next Guess" button
@@ -1990,9 +1992,9 @@ function startNewGame() {
 
   document.getElementById("lives-nb").textContent = lives;
   updatePointsDisplay();
-  correctAnswers = 0; // Reset the correct answers counter
-  updateScore(); // Update the score display
-  loadRandomSkin(); // Load a new skin
+  correctAnswers = 0;
+  updateScore();
+  loadRandomSkin();
   const result = document.getElementById("result");
   result.textContent = ""; // Clear the result message
   const guessInput = document.getElementById("guess-input");

@@ -26,6 +26,14 @@
   --glow-pink: rgba(255, 109, 240, 0.6); /* Pink glow for accent */
   --glow-blue: rgba(0, 212, 255, 0.6); /* Cyan glow for hover */
   --glow-teal: rgba(0, 255, 203, 0.6); /* Teal glow for emphasis */
+
+  /* Informational Colors */
+  --info-blue: #1e90ff; /* Light blue for info */
+  --success-green: #00ff7f; /* Neon green for success */
+  --warning-yellow: #ffcc00; /* Neon yellow for warnings */
+  --error-red: #ff4d4d; /* Bright red for errors */
+  --neutral-gray: #d1d1d6; /* Soft gray for neutral text */
+  --neutral-light: #f3f3f5;
 }
 
 
@@ -277,7 +285,7 @@ input[type="text"]:focus {
 #correct-answer-text {
   font-size: 18px;             /* Slightly larger font size */
   margin-bottom: 15px;         /* Space below the text */
-  color: var(--text-primary);              /* Darker color for readability */
+  color: var(--primary-deepest-purple);              /* Darker color for readability */
   font-weight: 600;            /* Semi-bold text for emphasis */
   text-align: center;          /* Center-align the text */
   padding: 10px;               /* Padding around the text */
@@ -439,4 +447,79 @@ input[type="text"]:focus {
   font-weight: 700;
   margin-bottom: 15px;
   text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Styling for the menu page */
+.menu {
+  text-align: center;
+  padding: 50px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 50px;
+  border-radius: 10px;
+}
+
+.menu h1 {
+  color: #333;
+}
+
+.menu p {
+  color: #666;
+}
+
+.menu .menu-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.menu .menu-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the game page */
+.game-container {
+  text-align: center;
+  padding: 50px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 50px;
+  border-radius: 10px;
+}
+
+.game-container h1 {
+  color: #333;
+}
+
+.game-container .menu-btn {
+  background-color: #28a745;
+}
+
+.game-container .menu-btn:hover {
+  background-color: #218838;
 }
