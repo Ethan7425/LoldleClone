@@ -498,28 +498,15 @@ input[type="text"]:focus {
   margin: 10px;
 }
 
-.menu .menu-btn:hover {
-  background-color: #0056b3;
+.menu-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary-dark-purple), var(--primary-deepest-purple));
+  color: var(--text-accent);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 10px var(--glow-purple);
+  transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-/* Styling for the game page */
-.game-container {
-  text-align: center;
-  padding: 50px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 50px;
-  border-radius: 10px;
-}
-
-.game-container h1 {
-  color: #333;
-}
-
-.game-container .menu-btn {
-  background-color: #28a745;
-}
-
-.game-container .menu-btn:hover {
-  background-color: #218838;
-}
