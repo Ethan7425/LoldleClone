@@ -38,6 +38,10 @@
 
 
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
   user-select: none;
   background-color: var(--background-dark);
   color: var(--text-primary);
@@ -50,6 +54,7 @@ body {
   justify-content: flex-start; /* Adjust content to top */
   min-height: 100vh;  /* Ensure body takes at least the full height of the viewport */
 }
+
 
 /* Buttons */
 button {
@@ -158,13 +163,6 @@ input[type="text"]:focus {
 
 /* --- Spacer --- */
 
-/* ========================== Buttons Container & Styling ========================== */
-#buttons {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 10px;
-}
-
 /* ========================== Full Art PopUp ========================== */
 
 /* Full-size popup with black transparent background */
@@ -231,8 +229,9 @@ input[type="text"]:focus {
 #guess-form {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-top: 10px;
     gap: 10px;
+
 }
 
 #guess-input {
@@ -261,13 +260,19 @@ input[type="text"]:focus {
 }
 
 #result {
-    font-size: 18px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    width: 280px;
-    display: none;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  width: 280px;
+  position: absolute;  /* Detach it from the flow of the document */
+  top: 15%;  /* Adjust position to be centered vertically (optional) */
+  left: 50%;  /* Center horizontally */
+  transform: translate(-50%, -50%); /* Fine-tune centering */
+  display: none;  /* Initially hidden */
+  z-index: 1000;  /* Ensure it's on top of other content */
 }
+
 
 #result.correct {
     background-color: #38a169;
@@ -311,8 +316,8 @@ input[type="text"]:focus {
 
 /* ========================== Game Buttons Styling ========================== */
 #game-buttons {
-    margin-top: 20px;
-    margin-bottom: 100px;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 #new-game-button {
@@ -375,19 +380,19 @@ input[type="text"]:focus {
 
 /* ========================== Button Movement when Full Image is Displayed ========================== */
 #toggle-full-image-container.show-full {
-    margin-top: 150px; /* Move the button down when the full image is shown */
+    display: none;
 }
 
 
 /* ========================== Point Board Styling ========================== */
 #point-board {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  position: relative;
+  top: 15px;
   background-color: var(--background-dark);
   border: 2px solid var(--accent-pink);
   border-radius: 8px;
   padding: 10px 20px;
+  margin-bottom: 20px;
   box-shadow: 0px 4px 6px var(--glow-purple);
   text-align: center;
   font-size: 18px;
@@ -449,26 +454,6 @@ input[type="text"]:focus {
   text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Styling for the menu page */
 .menu {
   text-align: center;
@@ -510,3 +495,47 @@ input[type="text"]:focus {
   transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
+#navigation {
+  margin: 20px;
+}
+
+/* Hide all scenes by default */
+.scene {
+  display: none;
+  min-height: 100vh;
+}
+
+/* Active scene is displayed */
+.scene.active {
+  /* display: block; */
+  display: flex;
+}
+
+#splash {
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#game-scene {
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  text-align: center; 
+}
+
+#game-scene,
+#options-scene,
+#about-scene {
+  min-height: 100vh;  /* Ensure each scene takes the full height */
+}
+
+
+/* ========================== Media Querries ========================== */
+
+
+@media (max-width: 400px) {
+  #leaderboard-container {
+    display: none;
+  }
+}

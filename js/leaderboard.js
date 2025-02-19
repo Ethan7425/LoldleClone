@@ -10,7 +10,8 @@ function saveScore(newScore) {
     }
   
     // Add the new score to the leaderboard
-    leaderboard.push(newScore);
+    if(newScore > 0 )
+      leaderboard.push(newScore);
   
     // Sort the leaderboard in descending order (highest score first)
     leaderboard.sort((a, b) => b - a);

@@ -1856,18 +1856,41 @@ function loadRandomSkin() {
 
 
 function clearResult() {
-    // Clear the result message
     const result = document.getElementById("result");
     const corr_answer = document.getElementById("correct-answer-text");
     result.textContent = ""; // Reset the win/lose text
     result.style.color = ""; // Reset the text color
     result.style.display = "none"; // Hide the result box
-    // corr_answer.style.background = "";
     // Clear the input field
     const guessInput = document.getElementById("guess-input");
     guessInput.value = ""; // Reset the input text
 }
 
+
+// function toggleFullImage() {
+//   const fullSplashContainer = document.getElementById("full-splash-container");
+//   const splash = document.getElementById("splash");
+//   const fullSplash = document.getElementById("full-splash");
+//   const toggleButton = document.getElementById("toggle-full-image");
+//   const toggleButtonContainer = document.getElementById("toggle-full-image-container");
+
+//   if (fullSplashContainer.style.display === "none" || !fullSplashContainer.style.display) {
+//     // Show the full image
+//     fullSplash.src = splash.src;
+//     fullSplashContainer.style.display = "flex";
+//     toggleButton.textContent = "Hide Full Image";
+
+//     // Add class to move the button down
+//     toggleButtonContainer.classList.add("show-full");
+//   } else {
+//     // Hide the full image
+//     fullSplashContainer.style.display = "none";
+//     toggleButton.textContent = "Show Full Image";
+
+//     // Remove class to reset the button position
+//     toggleButtonContainer.classList.remove("show-full");
+//   }
+// }
 
 function toggleFullImage() {
   const fullSplashContainer = document.getElementById("full-splash-container");
@@ -1876,23 +1899,25 @@ function toggleFullImage() {
   const toggleButton = document.getElementById("toggle-full-image");
   const toggleButtonContainer = document.getElementById("toggle-full-image-container");
 
-  if (fullSplashContainer.style.display === "none" || !fullSplashContainer.style.display) {
-    // Show the full image
-    fullSplash.src = splash.src;
-    fullSplashContainer.style.display = "flex";
-    toggleButton.textContent = "Hide Full Image";
+  // Show the full image
+  fullSplash.src = splash.src;
+  fullSplashContainer.style.display = "flex";
+  toggleButton.textContent = "Hide Full Image";
 
-    // Add class to move the button down
-    toggleButtonContainer.classList.add("show-full");
-  } else {
-    // Hide the full image
+  // Add class to move the button down
+  toggleButtonContainer.classList.add("show-full");
+
+  // Set a timer to hide the full image after 2 seconds
+  setTimeout(function() {
     fullSplashContainer.style.display = "none";
-    toggleButton.textContent = "Show Full Image";
+    toggleButton.textContent = "Show Full Image"; // Reset the button text
 
     // Remove class to reset the button position
     toggleButtonContainer.classList.remove("show-full");
-  }
+  }, 2000); // 2000 milliseconds = 2 seconds
 }
+
+
 
 // Global variable for lives
 let lives = 3;
@@ -1902,8 +1927,11 @@ function checkGuess() {
   const splash = document.getElementById("splash");
   const correctAnswer = JSON.parse(splash.dataset.champion); // Parse the JSON string into an array
   const userGuess = document.getElementById("guess-input").value.trim().toLowerCase();
-  const result = document.getElementById("result"); // The result box
+  const userInput = document.getElementById("guess-input");
+  const result = document.getElementById("result");
   const correctAnswerBox = document.getElementById("correct-answer"); // Correct answer display
+
+  userInput.value = "";
 
   if (correctAnswer.includes(userGuess)) {
     // User's guess matches any correct answer
@@ -1920,7 +1948,6 @@ function checkGuess() {
     result.className = "incorrect";
     result.style.display = "block";
   }
-
   setTimeout(function() {
     result.style.display = "none"; 
   }, 2000);
@@ -2052,12 +2079,26 @@ function handleImageError() {
 }
 
 
+// Function to show the selected scene and hide all others
+function showScene(sceneId) {
+  // Hide all scenes
+  const scenes = document.querySelectorAll('.scene');
+  scenes.forEach(scene => {
+    scene.classList.remove('active');
+  });
+
+  // Show the selected scene
+  const selectedScene = document.getElementById(sceneId);
+  selectedScene.classList.add('active');
+}
+
 // Initialize the game
 document.addEventListener("DOMContentLoaded", () => {
   setDifficulty('medium'); // Set default difficulty
   loadRandomSkin(); // Load a random skin
   updatePointsDisplay();
   displayLeaderboard();
+  showScene('game-scene');
   document.getElementById("splash").onload = cropSplashRandomly; // Crop after image loads
 
   // Autofocus on the input field when the page loads

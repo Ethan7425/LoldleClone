@@ -12,92 +12,123 @@
 </head>
 <body>
 
-  <!-- New Game button -->
-  <div id="game-buttons">
-    <button id="new-game-button" onclick="startNewGame()">New Game</button>
+  <!-- Navigation Menu (to switch scenes) -->
+  <div id="navigation">
+    <button onclick="showScene('game-scene')">Game</button>
+    <button onclick="showScene('options-scene')">Options</button>
+    <button onclick="showScene('about-scene')">About</button>
   </div>
 
-  <!-- Difficulty Selection Buttons -->
-  <div id="difficulty-buttons">
-    <button onclick="setDifficulty('easy')">Easy</button>
-    <button onclick="setDifficulty('medium')">Medium</button>
-    <button onclick="setDifficulty('hard')">Hard</button>
-  </div>
+  <!-- Game Scene -->
+  <div id="game-scene" class="scene">
+    <!-- New Game button -->
+    <div id="game-buttons">
+      <button id="new-game-button" onclick="startNewGame()">New Game</button>
+    </div>
 
-  <!-- Splash Container -->
-  <div id="splash-container">
-    <img id="splash" alt="Champion Splash">
-  </div>
+    <!-- Difficulty Selection Buttons -->
+    <div id="difficulty-buttons">
+      <button onclick="setDifficulty('easy')">Easy</button>
+      <button onclick="setDifficulty('medium')">Medium</button>
+      <button onclick="setDifficulty('hard')">Hard</button>
+    </div>
 
-  <!-- Full Splash Container -->
-  <div id="full-splash-container" style="display: none;">
+    <!-- Splash Container -->
+    <div id="splash-container">
+      <img id="splash" alt="Champion Splash">
+    </div>
+
+    <!-- Full Splash Container -->
+    <div id="full-splash-container" style="display: none;">
+      <img id="full-splash" alt="Full Splash Image">
+    </div>
+
+
+    <!-- Full Art Popup (Initially hidden) -->
+    <div id="full-art-popup" style="display: none;">
+      <div id="popup-content">
+        <div id="correct-answer-text"></div>
+        <img id="full-art-image" src="" alt="Full Champion Art">
+        <button id="next-guess-btn">Next Guess</button>
+      </div>
+    </div>
+
+
+
+    <!-- Buttons for actions -->
+    <div id="buttons">
+      <button id="crop-button" onclick="tryCropSplash()">Re-crop</button>
+      <button id="giveup-button" onclick="giveup()">Give Up</button>
+    </div>
+
+    <!-- Guess Form -->
+    <form id="guess-form">
+      <input type="text" id="guess-input" placeholder="Enter champion name" autocomplete="off">
+      <button type="button" onclick="checkGuess()">Guess</button>
+    </form>
+
+
+
+    <!-- Correct Answers Counter -->
+    <div id="score-counter">
+      Correct Answers: <span id="correct-count">0</span>
+    </div>
+
+    <div id="lives-counter">
+      Lives: <span id="lives-nb">3</span>
+    </div>
+
+
+
+
+    <!-- Full Splash Container -->
+  <div id="full-splash-container">
     <img id="full-splash" alt="Full Splash Image">
   </div>
 
-
-  <!-- Full Art Popup (Initially hidden) -->
-  <div id="full-art-popup" style="display: none;">
-    <div id="popup-content">
-      <div id="correct-answer-text"></div>
-      <img id="full-art-image" src="" alt="Full Champion Art">
-      <button id="next-guess-btn">Next Guess</button>
-    </div>
+  <!-- Point Board -->
+  <div id="point-board">
+    <h2>Points: <span id="points">0</span></h2>
   </div>
-
-
-
-  <!-- Buttons for actions -->
-  <div id="buttons">
-    <button id="crop-button" onclick="tryCropSplash()">Re-crop</button>
-    <button id="giveup-button" onclick="giveup()">Give Up</button>
-  </div>
-
-  <!-- Guess Form -->
-  <form id="guess-form">
-    <input type="text" id="guess-input" placeholder="Enter champion name" autocomplete="off">
-    <button type="button" onclick="checkGuess()">Guess</button>
-  </form>
 
   <!-- Result Message -->
   <div id="result"></div>
-
-  <!-- Correct Answers Counter -->
-  <div id="score-counter">
-    Correct Answers: <span id="correct-count">0</span>
-  </div>
-
-  <div id="lives-counter">
-    Lives: <span id="lives-nb">3</span>
-  </div>
 
   <!-- Result Section -->
   <div id="result-container">
     <div id="result" class="correct"></div>
   </div>
 
+  <!-- Full Image Toggle Button -->
+  <div id="toggle-full-image-container">
+    <button id="toggle-full-image" onclick="toggleFullImage()">Show Full Image</button>
+  </div>
 
-  <!-- Full Splash Container -->
-<div id="full-splash-container">
-  <img id="full-splash" alt="Full Splash Image">
+  <div id="leaderboard-container">
+    <h2>Leaderboard</h2>
+    <div id="leaderboard-numbers"></div>
+    <button id="resetLeaderboard-button" onclick="resetLeaderboard()">Reset Leaderboard</button>
+  </div>
 </div>
 
-<!-- Full Image Toggle Button -->
-<div id="toggle-full-image-container">
-  <button id="toggle-full-image" onclick="toggleFullImage()">Show Full Image</button>
-</div>
+  <!-- Options Scene -->
+  <div id="options-scene" class="scene">
+    <h1>Options</h1>
+    <p>Select Difficulty:</p>
+    <div id="difficulty-buttons">
+      <button onclick="setDifficulty('easy')">Easy</button>
+      <button onclick="setDifficulty('medium')">Medium</button>
+      <button onclick="setDifficulty('hard')">Hard</button>
+    </div>
+    <button onclick="showScene('game-scene')">Back to Game</button>
+  </div>
 
-<!-- Point Board -->
-<div id="point-board">
-  <h2>Points: <span id="points">0</span></h2>
-</div>
-
-
-<div id="leaderboard-container">
-  <h2>Leaderboard</h2>
-  <div id="leaderboard-numbers"></div>
-  <button id="resetLeaderboard-button" onclick="resetLeaderboard()">Reset Leaderboard</button>
-</div>
-
+  <!-- About Scene -->
+  <div id="about-scene" class="scene">
+    <h1>About This Game</h1>
+    <p>This is a fun game where you guess champions based on their splash art! Try to guess the champion name from the splash image.</p>
+    <button onclick="showScene('game-scene')">Back to Game</button>
+  </div>
 
   <script src="./js/script.js"></script>
   <script src="./js/leaderboard.js"></script>
@@ -106,5 +137,4 @@
 
 
 
-<!-- TODO : - Show Mult 
-       - Notice of how points work  -->
+<!-- TODO : - Show Mult  -->
