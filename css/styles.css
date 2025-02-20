@@ -534,7 +534,7 @@ input[type="text"]:focus {
 /* ========================== Media Querries ========================== */
 
 
-@media (max-width: 400px) {
+@media (max-width: 700px) {
   #leaderboard-container {
     display: none;
   }
